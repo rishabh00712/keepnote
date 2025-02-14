@@ -193,11 +193,21 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({ title: "", content: "" });
-    setSuggestions([]);
     event.preventDefault();
-  }
+
+    fetch("http://localhost:5000/api/notes/add", { // ✅ Corrected the endpoint
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(note),
+    })
+    .then(response => {
+        console.log("Raw response:", response); // ✅ Check the response
+        return response.json(); // Parse response as JSON
+    })
+    .then(data => console.log("Response Data:", data)) // ✅ Log parsed response
+    .catch(error => console.error("Error saving note:", error));
+}
+
 
   function expand() {
     setExpanded(true);

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
@@ -7,45 +8,31 @@ import CreateArea from "./CreateArea";
 function App() {
   const [notes, setNotes] = useState([]);
 
-  function addNote(newNote) {
-    setNotes((prevNotes) => {
-      return [...prevNotes, newNote];
-    });
-
-    if (newNote.timer) {
-      setReminder(newNote.title, newNote.timer);
-    }
-  }
-
-  function deleteNote(id) {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((noteItem, index) => index !== id);
-    });
-  }
-
-  function setReminder(title, minutes) {
-    const timeInMs = minutes * 60000;
-    setTimeout(() => {
-      alert(`Reminder: ${title}`);
-    }, timeInMs);
-  }
+  useEffect(() => {
+      axios
+        .get("http://localhost:5000/api/notes/all")
+        .then((response) => {
+          setNotes(response.data.content);
+        })
+        .catch((error) => {
+          console.error("Error fetching notes:", error);
+        })
+  }, []);
 
   return (
-    <div>
-      <Header />
-      <CreateArea onAdd={addNote} />
-      {notes.map((noteItem, index) => (
-        <Note
-          key={index}
-          id={index}
-          title={noteItem.title}
-          content={noteItem.content}
-          onDelete={deleteNote}
-        />
-      ))}
-      <Footer />
-    </div>
+    <Dashboard notes={notes}/>
   );
 }
+
+const Dashboard = ({ notes }) => (
+  <div>
+    <Header />
+    <CreateArea />
+    {notes.map((note) => (
+      <Note key={note._id} id={note._id} title={note.title} content={note.content} />
+    ))}
+    <Footer />
+  </div>
+);
 
 export default App;

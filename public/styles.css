@@ -101,3 +101,34 @@ form.create-note button {
   cursor: pointer;
   outline: none;
 }
+
+@media screen and (max-width: 480px) {
+  header {
+    padding: 10px 16px;
+    margin: 0px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .note {
+    padding: 20px;
+    font-size: 0.9rem;
+    margin-left: 20px;
+  }
+
+  form.create-note {
+    padding: 8px;
+  }
+
+  form.create-note button {
+    right: 10px;
+    bottom: -12px;
+    width: 30px;
+    height: 30px;
+  }
+  .note button {
+    position: relative;
+  }
+}
