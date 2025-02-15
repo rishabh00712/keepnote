@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+import webpush from 'web-push';
 import express from 'express';
 import connectDB from './src/db/index.js';
 import cookieParser from 'cookie-parser';
@@ -31,6 +32,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
+
+webpush.setVapidDetails(
+    process.env.VAPID_EMAIL,
+    process.env.VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+);
+
+const sendWebPushNotification = (subscription, message) => {
+    webpush.sendNotification(subscription, message)
+        .then(() => console.log("Notification sent"))
+        .catch((err) => console.error("Push error:", err));
+};
 app.post("/api/set-alarm", async (req, res) => {
     const { id, time } = req.body;
 
@@ -53,9 +66,8 @@ cron.schedule("* * * * *", async () => {
     const alarms = await Alarm.find({ time: { $lte: now } });
 
     alarms.forEach((alarm) => {
-        console.log(`Triggering alarm for note ${alarm.noteId}`);
-        // Push notification function to trigger alarm
-        // work to be done
+        console.log(`Triggering alarm for note ${alarm.noteid}`);
+        /* sendWebPushNotification(alarm.subscription, "Time to check your note!");*/
     });
 });
 
