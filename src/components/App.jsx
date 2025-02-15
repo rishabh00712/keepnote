@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
+import { ThemeProvider } from "./ThemeContext";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -20,7 +21,9 @@ function App() {
   }, []);
 
   return (
-    <Dashboard notes={notes}/>
+    <ThemeProvider>
+      <Dashboard notes={notes}/>
+    </ThemeProvider>
   );
 }
 

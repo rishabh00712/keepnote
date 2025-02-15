@@ -1,134 +1,275 @@
+/* General Styles */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 html {
   font-family: "Montserrat", sans-serif;
 }
+
 body {
-  background: #eee;
+  background: linear-gradient(135deg, #f9f9f9, #e3e3e3);
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   padding: 0 16px;
+  min-height: 100vh;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.light {
+  background-color: linear-gradient(135deg, #f9f9f9, #e3e3e3);
+  color: #000000;
+}
+
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+}
+
+.header.light {
+  background-color: #f0f0f0;
+}
+
+.header.dark {
+  background-color: #1f1f1f;
+}
+/* App.css */
+.theme-toggle-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.light .theme-toggle-button {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.dark .theme-toggle-button {
+  background-color: #1f1f1f;
+  color: #ffffff;
 }
 
 header {
-  background-color: #f5ba13;
-  margin: auto -16px;
-  padding: 16px 32px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #f5ba13, #ffcc33);
+  padding: 20px 32px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 15px 15px;
 }
 
 header h1 {
   color: #fff;
   font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
+/* Footer */
 footer {
-  position: absolute;
   text-align: center;
-  bottom: 0;
+  margin-top: auto;
+  padding: 10px 0;
   width: 100%;
-  height: 2.5rem;
 }
 
 footer p {
-  color: #ccc;
+  color: #888;
+  font-size: 0.9rem;
 }
+
+/* Notes Container */
 .note {
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px #ccc;
-  padding: 10px;
-  width: 240px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 280px;
   margin: 16px;
   float: left;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
+
+.note:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
 .note h1 {
-  font-size: 1.1em;
+  font-size: 1.2em;
+  font-weight: 600;
   margin-bottom: 6px;
+  color: #333;
 }
+
 .note p {
-  font-size: 1.1em;
-  margin-bottom: 10px;
+  font-size: 1em;
+  margin-bottom: 12px;
+  color: #555;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
+/* Buttons */
 .note button {
-  position: relative;
-  float: right;
-  margin-right: 10px;
-  color: #f5ba13;
+  background: transparent;
   border: none;
   width: 36px;
   height: 36px;
   cursor: pointer;
   outline: none;
+  transition: all 0.2s ease-in-out;
 }
 
-form.create-note {
-  position: relative;
-  width: 480px;
-  margin: 30px auto 20px auto;
-  background: #fff;
-  padding: 15px;
-  border-radius: 7px;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
+.note button:hover {
+  transform: scale(1.1);
 }
+
+.note button svg {
+  color: #f5ba13;
+}
+
+.note button:hover svg {
+  color: #ff8800;
+}
+
+/* Create Note Form */
+form.create-note {
+  width: 500px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  transition: all 0.3s ease-in-out;
+}
+
 form.create-note input,
 form.create-note textarea {
   width: 100%;
   border: none;
-  padding: 4px;
+  padding: 10px;
   outline: none;
   font-size: 1.2em;
   font-family: inherit;
-  resize: none;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
 }
+
+form.create-note input:focus,
+form.create-note textarea:focus {
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Add Button */
 form.create-note button {
   position: absolute;
-  right: 18px;
-  bottom: -18px;
-  background: #f5ba13;
+  right: 20px;
+  bottom: -20px;
+  background: linear-gradient(135deg, #f5ba13, #ffcc33);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 480px) {
-  header {
-    padding: 10px 16px;
-    margin: 0px;
-  }
+form.create-note button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff8800, #ffbb00);
+}
 
+/* Responsive Design */
+@media screen and (max-width: 480px) {
   header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .note {
-    padding: 20px;
+    padding: 15px;
     font-size: 0.9rem;
-    margin-left: 20px;
+    width: 90%;
+    margin: 16px auto;
   }
 
   form.create-note {
-    padding: 8px;
+    width: 90%;
+    padding: 12px;
   }
 
   form.create-note button {
-    right: 10px;
-    bottom: -12px;
-    width: 30px;
-    height: 30px;
+    right: 12px;
+    bottom: -14px;
+    width: 36px;
+    height: 36px;
   }
-  .note button {
-    position: relative;
+}
+
+@media screen and (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .note {
+    width: 90%;
+    max-width: 280px;
+    min-width: 220px;
+    font-size: 0.9rem;
+    padding: 12px;
+    margin: 10px auto;
+    word-wrap: break-word;
+  }
+
+  .note h1 {
+    font-size: 1.1rem;
+  }
+
+  form.create-note {
+    width: 90%;
+    padding: 12px;
+  }
+
+  form.create-note button {
+    right: 12px;
+    bottom: -14px;
+    width: 36px;
+    height: 36px;
   }
 }
