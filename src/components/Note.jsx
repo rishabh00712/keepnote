@@ -8,6 +8,7 @@ function Note(props) {
   const [newTitle, setNewTitle] = useState(props.title);
   const [newContent, setNewContent] = useState(props.content);
 
+
   const handleSetAlarm = async () => {
     if (!alarmTime) return;
     try {
