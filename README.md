@@ -3,6 +3,9 @@
 ## 📌 Overview
 **KeepNote** is a feature-rich, MERN stack-powered note-taking application designed for efficient organization and management of notes. This project was developed as part of a hackathon, integrating modern web technologies to provide a seamless user experience.
 
+![image](https://github.com/user-attachments/assets/248683ea-8203-419a-ab04-b14e1a1e666c)
+
+
 ## 🚀 Features
 - 📝 **Create, Edit, and Delete Notes**
 - 🛎️ **Alarm/Reminder Feature** (Push Notifications)
