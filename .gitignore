@@ -1,2 +1,18 @@
+<<<<<<< HEAD
 node_modules
 .env
+=======
+# Ignore node_modules for both frontend and backend
+keepnote/node_modules/
+keepnote_backend/node_modules/
+
+# Ignore environment files
+.env
+keepnote/.env
+keepnote_backend/.env
+
+# Ignore logs and build artifacts (optional)
+*.log
+keepnote/build/
+keepnote_backend/dist/
+>>>>>>> 91b59e21886f47b257452edcd180ddfe3ccde8be
