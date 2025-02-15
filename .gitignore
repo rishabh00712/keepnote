@@ -1,0 +1,27 @@
+# Node.js Backend (Express)
+keepnote_backend/node_modules/
+keepnote_backend/.env
+keepnote_backend/.vercel/
+keepnote_backend/logs/
+keepnote_backend/tmp/
+keepnote_backend/debug.log
+keepnote_backend/npm-debug.log
+keepnote_backend/yarn-error.log
+keepnote_backend/.cache/
+
+# React Frontend
+keepnode_frontend/node_modules/
+keepnode_frontend/build/
+keepnode_frontend/.env
+keepnode_frontend/.cache/
+
+# System files
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+
+# Vercel & Deployment
+.vercel/

@@ -12,7 +12,7 @@ function Note(props) {
   const handleSetAlarm = async () => {
     if (!alarmTime) return;
     try {
-      const response = await fetch("http://localhost:5000/api/set-alarm", {
+      const response = await fetch(`${process.env.BACKEND_BASEURL}/api/set-alarm`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: props.id, time: alarmTime }),
@@ -30,7 +30,7 @@ function Note(props) {
 
   const handleDeleteNote = async (noteId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/notes/delete/${noteId}`, {
+      const response = await fetch(`${process.env.BACKEND_BASEURL}/api/notes/delete/${noteId}`, {
         method: "DELETE",
       });
 
@@ -48,7 +48,7 @@ function Note(props) {
 
   const updateNote = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/notes/update/${props.id}`, {
+      const response = await fetch(`${process.env.BACKEND_BASEURL}/api/notes/update/${props.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

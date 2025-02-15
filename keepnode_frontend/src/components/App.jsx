@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
       axios
-        .get("http://localhost:5000/api/notes/all")
+        .get(`${process.env.BACKEND_BASEURL}/api/notes/all`)
         .then((response) => {
           setNotes(response.data.content);
         })

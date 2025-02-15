@@ -20,7 +20,7 @@ function Signup({ setUserAuthenticated }) {
     try {
       console.log("sending data to backend : ", {username, email, password});
       const response = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        `${import.meta.env.BACKEND_BASEURL}/api/auth/signup`,
         { username, email, password }, // Simplified object syntax
         { headers: { "Content-Type": "application/json" } }
       );

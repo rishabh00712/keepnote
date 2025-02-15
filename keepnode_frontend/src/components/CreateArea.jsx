@@ -195,7 +195,7 @@ function CreateArea(props) {
   function submitNote(event) {
     event.preventDefault();
 
-    fetch("http://localhost:5000/api/notes/add", { // ✅ Corrected the endpoint
+    fetch(`${process.env.BACKEND_BASEURL}/api/notes/add`, { // ✅ Corrected the endpoint
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(note),
